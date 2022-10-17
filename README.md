@@ -4,38 +4,61 @@ package personnage;
 
 import java.util.Set;
 
+package personnage;
+
+import java.util.Set;
+
 public class Village {
 	private String nom;
 	private Chef chef;
 	private Gaulois[] villageois;
-	private int nbVillageois;
+	private int nbVillageois = 0;
 	
-	public Village (int nbVillageoisMaximum) {
+	public Village (String nom, int nbVillageoisMaximum) {
+		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
-		this.nbVillageois = 0;
 	}
 	
 	public String getNom() {
 		return nom;
 	}
 	
-	public Village(String nom) {
-		this.nom = nom;
-	}
-	
 	public void setChef(Chef chef) {
 		this.chef = chef;
 	}
 
-	public void ajouterHabitant(String gauloisAAjouter, Gaulois[] villageois) {
-		if (nbVillageois < Gaulois.lenght()) {
-			villageois[nbVillageois] = gauloisAAjouter;
-			nbVillageois += 1; 
+	public void ajouterHabitant(Gaulois gaulois) {
+		
+		if (nbVillageois < villageois.length) {
+			if (nbVillageois == 0) {
+				villageois[0] = gaulois;
+			}
+			else {
+				villageois[nbVillageois-1] = gaulois;
+			}
+			nbVillageois = nbVillageois+1; 
 		}
 	}
 	
+	public Gaulois trouverHabitant(int numeroVillageois) {
+		if (numeroVillageois <= nbVillageois) {
+			return villageois[numeroVillageois];
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		Village village = new Village("Village des Irréductibles", 30);
+		Gaulois abraracourcix = new Gaulois("Abraracourcix",6);
+		Chef chefAbraracourcix = new Chef("Abraracourcix",6,1,village);
+		Gaulois asterix = new Gaulois("Astérix",8);
+		village.ajouterHabitant(abraracourcix);
+		Gaulois gaulois = village.trouverHabitant(0);
+		System.out.println(gaulois);
+	}
 	
 }
+
 
 
 package personnage;
