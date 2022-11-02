@@ -13,6 +13,4 @@ public enum Equipement {
 		return this.nom;
 	}
 	
-	
-	
 }

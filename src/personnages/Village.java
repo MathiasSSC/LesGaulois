@@ -37,7 +37,7 @@ public class Village {
 	
 	public void afficherVillageois(Chef chef) {
 		System.out.println("Dans le village du chef " + chef 
-				+ " vivent les légendaires gaulois :\n") ;
+				+ " vivent les lï¿½gendaires gaulois :\n") ;
 		for(int i=0; i<nbVillageois ; i++) {
 			System.out.println("-" + villageois[i] +"\n") ;
 				}

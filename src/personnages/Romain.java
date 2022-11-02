@@ -18,7 +18,7 @@ public class Romain {
 	}
 
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "� " + texte + " �");
+		System.out.println(prendreParole() + "� " + texte + " �");
 	}
 
 	private String prendreParole() {
@@ -36,31 +36,43 @@ public class Romain {
 		assert nouvelleForce < force; 
 	}
 	
-	public String sEquiper(Equipement protection,Romain romain) {
-		if (nbEquipement >= equipement.length) {
-			return "le soldat " + romain + " est deja bien protege";
-		}
-		if (nbEquipement == 0) {
-			equipement[nbEquipement] = protection;
-			nbEquipement += 1;
-			return "le soldat " + romain + " s'equipe avec " + protection;
-		}
-		else {
-			if (protection == equipement[nbEquipement-1]) {
-				return "le soldat " + romain + " possede deja un " + protection;
-			}
-			else {
-				return "le soldat " + romain + " s'equipe avec un " + protection;
-			}
-			
-		}
+	private void ajouterEquipement(Equipement protection,Romain romain) {
+		equipement[nbEquipement] = protection;
+		nbEquipement += 1;
+		System.out.println("le soldat " + nom + " s'équipe avec un " + protection);
+	}
+	
+	public void sEquiper(Equipement protection,Romain romain) {
+		switch(nbEquipement) {
 		
+			case 0:
+				ajouterEquipement(protection,romain);
+				break;
+			
+			case 1:
+				if (equipement[0] == protection) {
+					System.out.println("Le soldat " + nom + " possède déjà un " + protection);
+				} else {
+					ajouterEquipement(protection,romain);
+				}
+				break;
+				
+			case 2:
+				System.out.println("le soldat " + nom + " est deja bien protege");
+				break;
+			
+			default:
+				System.out.println("Il y a un soucis là");
+				break;
+		}
 	}
 	
 	public static void main(String[] args) {
 		Romain malin = new Romain("Malin",6);
-		malin.recevoirCoup(2);
-		malin.sEquiper
+		malin.sEquiper(Equipement.CASQUE,malin);
+		malin.sEquiper(Equipement.CASQUE,malin);
+		malin.sEquiper(Equipement.BOUCLIER,malin);
+		malin.sEquiper(Equipement.BOUCLIER,malin);
 		}
 
 }
