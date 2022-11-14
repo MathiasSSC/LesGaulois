@@ -29,7 +29,7 @@ public class Druide {
 		return "Le druide " + nom + " : ";
 	}
 	
-	public void preparerPotion(int effetPotionMax, int effetPotionMin) {
+	public void preparerPotion() {
 		Random ran = new Random();
 		forcePotion = ran.nextInt(effetPotionMax);
 		if(forcePotion > 7) {
@@ -41,13 +41,19 @@ public class Druide {
 					+ forcePotion);
 		}
 		else {
-			preparerPotion(effetPotionMax,effetPotionMin);
+			preparerPotion();
 		}
+	}
+	
+	
+	public void booster(Gaulois gaulois) {
+		gaulois.boirePotion(forcePotion);
+		
 	}
 	
 	public static void main(String[] args) {
 		Druide panoramix = new Druide ("Panoramix",5,10);
-		panoramix.preparerPotion(10,5);
+		panoramix.preparerPotion();
 	}
 
 }
